@@ -1,0 +1,71 @@
+/*
+You are given a string s representing a group of seats. 1 represents that the seat is occupied whereas 2 means that the seat is empty.
+The task is to find an empty seat X such that distance of the closest person to X is maximised.
+
+12221221    3
+1221        2
+12122221    4
+
+*/
+
+#include<bits/stdc++.h>
+#define pb push_back
+#define ll long long
+#define SIZE(x) (int)((x).size())
+#define MAX(a,b) ((a)>(b)?(a):(b))
+#define MIN(a,b) ((a)<(b)?(a):(b))
+#define ABS(x) ((x)<0?-(x):(x))
+#define FOR(i,a,b) for(int i=(a);i<=(b);i++)
+using namespace std;
+
+
+
+void solve()
+{
+    string s;
+    cin >> s;
+
+    int n = s.length();
+
+    int count = 0;
+    int max_count = INT_MIN;
+    int start = 0;
+    int end = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '1')
+        {
+            if (count > max_count)
+            {
+                max_count = count;
+                start = i - count - 1;
+                end = i;
+            }
+            count = 0;
+        }
+
+        else count++;
+    }
+
+    cout << max_count << start << end << "\n";
+
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+
+
+    ll t;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+    }
+
+
+    return 0;
+}
